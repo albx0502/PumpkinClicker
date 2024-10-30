@@ -1,4 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- res/layout/activity_click.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,24 +12,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Puntos: 0"
-        android:textSize="24sp"/>
+        android:textSize="24sp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/pumpkinButton"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:text="🎃"
-        android:textSize="36sp"/>
+        android:background="@null"
+        android:src="@drawable/calabaza"
+    android:contentDescription="Botón de calabaza para ganar puntos" />
 
     <Button
         android:id="@+id/upgradeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ir a Mejoras"/>
+        android:text="Ir a Mejoras" />
 
     <Button
         android:id="@+id/triviaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ir a Trivia"/>
+        android:text="Ir a Trivia" />
+
 </LinearLayout>
