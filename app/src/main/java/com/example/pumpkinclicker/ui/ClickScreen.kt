@@ -2,56 +2,44 @@
 package com.example.pumpkinclicker.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.clickable
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pumpkinclicker.R
 
 @Composable
-fun ClickScreen(navController: NavHostController) {
-    var clickCount by remember { mutableStateOf(0) }
-    val pointsPerClick = 1
-
+fun ClickScreen(gameViewModel: GameViewModel = viewModel()) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
     ) {
-        // Muestra el contador de puntos
-        Text(text = "Puntos: $clickCount", fontSize = 24.sp)
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Imagen de calabaza que actúa como botón
-        Image(
-            painter = painterResource(id = R.drawable.calabaza),  // Asegúrate de que el nombre coincida con tu archivo
-            contentDescription = "Botón de calabaza",
-            modifier = Modifier
-                .size(150.dp)
-                .clickable { clickCount += pointsPerClick }  // Incrementa el contador al hacer clic en la calabaza
+        // Título del contador de puntos
+        Text(
+            text = "Caramelos: ${gameViewModel.points.value}",
+            fontSize = 28.sp,
+            color = Color(0xFFFFA500),
+            modifier = Modifier.padding(bottom = 24.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Botón para ir a la pantalla de mejoras
-        Button(onClick = { navController.navigate("upgrade_screen") }) {
-            Text("Ir a Mejoras")
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Botón para ir a la pantalla de trivia
-        Button(onClick = { navController.navigate("trivia_screen") }) {
-            Text("Ir a Trivia")
-        }
+        // Imagen de la calabaza como botón de clic
+        Image(
+            painter = painterResource(id = R.drawable.calabaza),
+            contentDescription = "Botón de calabaza",
+            modifier = Modifier
+                .size(200.dp)
+                .padding(16.dp)
+                .clickable { gameViewModel.addPoints() }
+        )
     }
 }

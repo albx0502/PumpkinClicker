@@ -4,36 +4,44 @@ package com.example.pumpkinclicker.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun UpgradeScreen(navController: NavHostController) {
-    var upgradePoints by remember { mutableStateOf(0) }
-    val upgradeCost = 10
-
+fun UpgradeScreen(gameViewModel: GameViewModel = viewModel()) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = "Puntos de Mejora: $upgradePoints", fontSize = 24.sp)
+        Text(
+            text = "Caramelos: ${gameViewModel.points.value}",
+            fontSize = 28.sp,
+            color = Color(0xFFFFA500),
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(onClick = { upgradePoints += upgradeCost }) {
-            Text("Comprar Mejora")
+        Button(
+            onClick = { gameViewModel.buyUpgrade(cost = 50, additionalPassivePoints = 1) },
+            modifier = Modifier
+                .fillMaxWidth(0.7f)
+                .padding(8.dp)
+        ) {
+            Text(text = "Mejora: +1 Caramelo/s (Coste: 50 Caramelos)", fontSize = 16.sp)
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(onClick = { navController.popBackStack() }) {
-            Text("Volver")
+        Button(
+            onClick = { gameViewModel.buyUpgrade(cost = 100, additionalPassivePoints = 2) },
+            modifier = Modifier
+                .fillMaxWidth(0.7f)
+                .padding(8.dp)
+        ) {
+            Text(text = "Mejora: +2 Caramelos/s (Coste: 100 Caramelos)", fontSize = 16.sp)
         }
     }
 }
