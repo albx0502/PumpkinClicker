@@ -76,7 +76,7 @@ fun UpgradeScreen(gameViewModel: GameViewModel = viewModel()) {
             Text(text = "Vampiros: +30 Caramelos/s (Coste: ${gameViewModel.vampiros.value * 1000} Caramelos) ${gameViewModel.vampiros.value-1} Vampiros ", fontSize = 16.sp)
         }
         Button(
-            onClick = { gameViewModel.buyUpgrade(cost = 10000 * gameViewModel.hombreslobo.value, additionalPassivePoints = 30, upgradeType = "Hombres Lobo") },
+            onClick = { gameViewModel.buyUpgrade(cost = 10000 * gameViewModel.hombreslobo.value, additionalPassivePoints = 110, upgradeType = "Hombres Lobo") },
             modifier = Modifier
                 .fillMaxWidth(0.7f)
                 .padding(8.dp)
