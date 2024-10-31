@@ -13,9 +13,11 @@ class GameViewModel : ViewModel() {
         private set
     var pointsPerClick = 1
     var passivePoints = 0
-    var clickcant = mutableStateOf(1)
-    var cantM1 = mutableStateOf(1)
-    var cantM2 = mutableStateOf(1)
+    var cuchillos = mutableStateOf(1)
+    var tumbas = mutableStateOf(1)
+    var zombies = mutableStateOf(1)
+    var vampiros = mutableStateOf(1)
+    var hombreslobo = mutableStateOf(1)
     private var passiveIncomeJob: Job? = null
 
     init {
@@ -30,7 +32,7 @@ class GameViewModel : ViewModel() {
         if (points.value >= cost) {
             points.value -= cost
             pointsPerClick++
-            clickcant.value++
+            cuchillos.value++
         }
     }
 
@@ -39,8 +41,10 @@ class GameViewModel : ViewModel() {
             points.value -= cost
             passivePoints += additionalPassivePoints
             when (upgradeType) {
-                "M1" -> cantM1.value++
-                "M2" -> cantM2.value++
+                "Tumbas" -> tumbas.value++
+                "Zombies" -> zombies.value++
+                "Vampiros" -> vampiros.value++
+                "Hombres Lobo" -> hombreslobo.value++
             }
         }
     }
