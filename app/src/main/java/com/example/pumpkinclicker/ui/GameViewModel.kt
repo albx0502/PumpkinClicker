@@ -22,7 +22,12 @@ class GameViewModel : ViewModel() {
     fun addPoints() {
         points.value += pointsPerClick
     }
-
+    fun buyClickUpgrade(cost: Int){
+        if (points.value >= cost) {
+            points.value -= cost
+            pointsPerClick ++
+        }
+    }
     fun buyUpgrade(cost: Int, additionalPassivePoints: Int) {
         if (points.value >= cost) {
             points.value -= cost
