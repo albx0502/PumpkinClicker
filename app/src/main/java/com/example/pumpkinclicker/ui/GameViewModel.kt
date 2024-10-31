@@ -49,6 +49,21 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    fun payForTrivia(cost: Int): Boolean {
+        return if (points.value >= cost) {
+            points.value -= cost
+            true
+        } else {
+            false
+        }
+    }
+
+    fun rewardTrivia(success: Boolean, bonus: Int) {
+        if (success) {
+            points.value += bonus
+        }
+    }
+
     private fun startPassiveIncome() {
         passiveIncomeJob?.cancel()
         passiveIncomeJob = viewModelScope.launch {
@@ -59,4 +74,3 @@ class GameViewModel : ViewModel() {
         }
     }
 }
-
