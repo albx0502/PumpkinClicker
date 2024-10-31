@@ -81,7 +81,7 @@ fun UpgradeScreen(gameViewModel: GameViewModel = viewModel()) {
                 .fillMaxWidth(0.7f)
                 .padding(8.dp)
         ) {
-            Text(text = "Hombres Lobo: +110 Caramelos/s (Coste: ${gameViewModel.hombreslobo.value * 1000} Caramelos) ${gameViewModel.hombreslobo.value-1} Hombres Lobo ", fontSize = 16.sp)
+            Text(text = "Hombres Lobo: +110 Caramelos/s (Coste: ${gameViewModel.hombreslobo.value * 10000} Caramelos) ${gameViewModel.hombreslobo.value-1} Hombres Lobo ", fontSize = 16.sp)
         }
     }
         }
