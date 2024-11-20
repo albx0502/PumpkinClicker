@@ -18,7 +18,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pumpkinclicker.R
 
 @Composable
-fun ClickScreen(gameViewModel: GameViewModel = viewModel()) {
+fun ClickScreen(
+    gameViewModel: GameViewModel = viewModel(),
+    authViewModel: AuthViewModel = viewModel(),
+    onLogout: () -> Unit
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -47,5 +51,15 @@ fun ClickScreen(gameViewModel: GameViewModel = viewModel()) {
                 .padding(16.dp)
                 .clickable { gameViewModel.addPoints() }
         )
+
+        // Botón de cerrar sesión
+        Button(
+            onClick = {
+                authViewModel.logout { onLogout() }
+            }
+        ) {
+            Text("Cerrar Sesión")
+        }
     }
 }
+

@@ -17,9 +17,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pumpkinclicker.R
 
 @Composable
-fun NavigationWrapper() {
+fun NavigationWrapper(onLogout: () -> Unit) {
     val navController = rememberNavController()
     val gameViewModel: GameViewModel = viewModel()
+    val authViewModel: AuthViewModel = viewModel()
 
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) }
@@ -37,7 +38,13 @@ fun NavigationWrapper() {
                 startDestination = "click_screen",
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable("click_screen") { ClickScreen(gameViewModel) }
+                composable("click_screen") {
+                    ClickScreen(
+                        gameViewModel = gameViewModel,
+                        authViewModel = authViewModel,
+                        onLogout = onLogout
+                    )
+                }
                 composable("upgrade_screen") { UpgradeScreen(gameViewModel) }
                 composable("trivia_screen") { TriviaScreen(navController, gameViewModel) }
             }
