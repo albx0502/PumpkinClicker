@@ -31,13 +31,19 @@ fun ClickScreen(gameViewModel: GameViewModel = viewModel()) {
             color = Color(0xFFFFA500),
             modifier = Modifier.padding(bottom = 24.dp)
         )
+        Text(
+            text = "(${gameViewModel.passivePoints} Caramelos/s)",
+            fontSize = 18.sp,
+            color = Color(0xFFFFA500),
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
 
         // Imagen de la calabaza como botón de clic
         Image(
             painter = painterResource(id = R.drawable.calabaza),
             contentDescription = "Botón de calabaza",
             modifier = Modifier
-                .size(200.dp)
+                .size(450.dp)
                 .padding(16.dp)
                 .clickable { gameViewModel.addPoints() }
         )

@@ -1,4 +1,3 @@
-// NavigationWrapper.kt
 package com.example.pumpkinclicker.ui
 
 import androidx.compose.foundation.Image
@@ -20,23 +19,19 @@ import com.example.pumpkinclicker.R
 @Composable
 fun NavigationWrapper() {
     val navController = rememberNavController()
-    val gameViewModel: GameViewModel = viewModel()  // Estado del juego
+    val gameViewModel: GameViewModel = viewModel()
 
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) }
     ) { innerPadding ->
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            // Imagen de fondo
+        Box(modifier = Modifier.fillMaxSize()) {
             Image(
-                painter = painterResource(id = R.drawable.fondo),  // Asegúrate de que el nombre coincide con el archivo en drawable
+                painter = painterResource(id = R.drawable.fondo),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
 
-            // Contenido de navegación en la parte superior del fondo
             NavHost(
                 navController = navController,
                 startDestination = "click_screen",
@@ -44,7 +39,7 @@ fun NavigationWrapper() {
             ) {
                 composable("click_screen") { ClickScreen(gameViewModel) }
                 composable("upgrade_screen") { UpgradeScreen(gameViewModel) }
-                composable("trivia_screen") { TriviaScreen(navController) }
+                composable("trivia_screen") { TriviaScreen(navController, gameViewModel) }
             }
         }
     }

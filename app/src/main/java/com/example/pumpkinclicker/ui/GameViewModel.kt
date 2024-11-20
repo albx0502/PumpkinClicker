@@ -15,6 +15,11 @@ class GameViewModel : ViewModel() {
         private set
     var pointsPerClick = 1
     var passivePoints = 0
+    var cuchillos = mutableStateOf(1)
+    var tumbas = mutableStateOf(1)
+    var zombies = mutableStateOf(1)
+    var vampiros = mutableStateOf(1)
+    var hombreslobo = mutableStateOf(1)
     private var passiveIncomeJob: Job? = null
 
     private var isPointsLoaded = false // Indica si los puntos se han cargado
@@ -39,14 +44,45 @@ class GameViewModel : ViewModel() {
         savePoints("playerId")
     }
 
-    // Función para comprar una mejora de clic
     fun buyClickUpgrade(cost: Int) {
-        if (points.value >= cost) {
+    if (points.value >= cost) {
+        points.value -= cost
+        pointsPerClick++
+        cuchillos.value++
+        saveUpgrade("playerId")
+    }
+}
+
+    fun buyUpgrade(cost: Int, additionalPassivePoints: Int, upgradeType: String? = null) {
+    if (points.value >= cost) {
+        points.value -= cost
+        passivePoints += additionalPassivePoints
+        upgradeType?.let {
+            when (it) {
+                "Tumbas" -> tumbas.value++
+                "Zombies" -> zombies.value++
+                "Vampiros" -> vampiros.value++
+                "Hombres Lobo" -> hombreslobo.value++
+            }
+        }
+        saveUpgrade("playerId")
+    }
+}
+
+    fun payForTrivia(cost: Int): Boolean {
+        return if (points.value >= cost) {
             points.value -= cost
-            pointsPerClick++
-            saveUpgrade("playerId")
+            true
+        } else {
+            false
         }
     }
+
+    fun rewardTrivia(success: Boolean, bonus: Int) {
+    if (success) {
+        points.value += bonus
+    }
+}
 
     // Función para comprar una mejora de ingresos pasivos
     fun buyUpgrade(cost: Int, additionalPassivePoints: Int) {

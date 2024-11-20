@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         FirebaseApp.initializeApp(this)
 
         setContent {
-            NavigationWrapper()
+            NavigationWrapper() // Llamada directa a la función de navegación
         }
     }
 }
