@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208419428909",
+    "project_id": "pumpkinclicker-d6686",
+    "storage_bucket": "pumpkinclicker-d6686.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208419428909:android:b01a7e310b3f00a61176a4",
+        "android_client_info": {
+          "package_name": "com.example.pumpkinclicker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ_nCLCVQdyzfwEBzsXz6-cNtom-BvHUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
